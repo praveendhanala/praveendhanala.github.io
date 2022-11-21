@@ -65,13 +65,25 @@
     	<a class="btn btn-lg" href="/random" style="float:right;">Next Question</a>
 	</div>-->
 
-	<div style="margin:20px 4px;" class="col-xs-12">
-    	<a id="prevBtn" class="btn btn-lg btn-primary col-xs-5" style="float:left;" onclick="prevQuestion();">Previous</a>
-    	<a id="nextBtn" class="btn btn-lg btn-primary col-xs-5" style="float:right;" onclick="nextQuestion();">Next</a>
-	</div>
+	
 
+	<footer>
+        <div style="margin:20px 4px;" class="col-xs-12">
+	    	<a id="prevBtn" class="btn btn-lg btn-primary col-xs-5" style="float:left;" onclick="prevQuestion();">Previous</a>
+	    	<a id="nextBtn" class="btn btn-lg btn-primary col-xs-5" style="float:right;" onclick="nextQuestion();">Next</a>
+		</div>
+    </footer>
 
 	<style type="text/css">
+		body{
+		    min-height: 100vh;
+		    display: flex;
+		    flex-direction: column;
+		}
+		footer{
+		    margin-top: auto;
+		}
+
 		.starter-template{
 			padding: 0 10px;
 		}
