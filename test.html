@@ -112,6 +112,16 @@
 			background-color: #15bece;
 			color: #fff;
 		}
+		.selected-wrong{
+			background-color: #d9534f;
+			border-color: #d43f3a;
+			color: #fff;
+		}
+		.selected-warning{
+			color: #fff;
+			background-color: #f0ad4e;
+			border-color: #eea236;
+		}
 		.correctOpt{
 			border: 3px solid green;
 		}
@@ -192,11 +202,11 @@
 			content += getOptionContent(questions[i], "C");
 			content += getOptionContent(questions[i], "D");
 
-			content += `
+			/*content += `
 				<div style="margin-bottom:20px;">
 			    	<button id="submitBtn" class="btn btn-lg" disabled>Check Answer</button>
 				</div>
-			`;
+			`;*/
 			console.log(content);
 			document.getElementById("questionDiv").innerHTML = content;
 		}
@@ -242,9 +252,21 @@
 			if(submitted) return;
 
 			$('.option').removeClass('selected');
-			$(this).addClass('selected');
-			$("#submitBtn").addClass('btn-primary');
-			$("#submitBtn").attr('disabled', false);
+			//$(this).addClass('selected');
+			if($(this).children('span.correctOptFlag').length > 0) {
+		        $(this).addClass('selected');
+		     } else {
+		     	$(this).addClass('selected-warning');
+		     }
+			//$("#submitBtn").addClass('btn-primary');
+			//$("#submitBtn").attr('disabled', false);
+
+			//submit functionality
+			submitted = true;
+			//$('#answerDiv').show();
+			$('.correctOptFlag').show();
+			$('.correctOptFlag').parent().addClass('correctOpt');
+			$("#submitBtn").attr('disabled', true);
 		});
 
 		$(document.body).on('click', '#submitBtn' ,function(){
