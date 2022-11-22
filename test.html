@@ -145,6 +145,12 @@
 			color:green;
 			margin-top: 0px;
 		}
+		.wrongOptFlag{
+			display: none;
+			float:right;
+			color:red;
+			margin-top: 0px;
+		}
 	</style>
 </body>
 
@@ -227,6 +233,7 @@
 			} else {
 				content = `
 					<span class="option thumbnail" onClick="optionClick()">
+						<span class="wrongOptFlag" style=""><img src="wrong.png" height="30"></span>
 						<span class="optionLabel">`+ opt + `</span> `
 		    		 + question[opt] + 
 		    		 `</span>
@@ -257,6 +264,7 @@
 		        $(this).addClass('selected');
 		     } else {
 		     	$(this).addClass('selected-warning');
+		     	$(this).children('.wrongOptFlag').show();
 		     }
 			//$("#submitBtn").addClass('btn-primary');
 			//$("#submitBtn").attr('disabled', false);
