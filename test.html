@@ -41,8 +41,8 @@
 
 	<footer>
         <div style="margin:20px 4px;" class="col-xs-12">
-	    	<a id="prevBtn" class="btn btn-lg btn-primary col-xs-5" style="float:left;" onclick="prevQuestion();">Previous</a>
-	    	<a id="nextBtn" class="btn btn-lg btn-primary col-xs-5" style="float:right;" onclick="nextQuestion();">Next</a>
+	    	<a id="prevBtn" class="btn btn-lg col-xs-5" style="float:left;" onclick="prevQuestion();">Previous</a>
+	    	<a id="nextBtn" class="btn btn-lg col-xs-5" style="float:right;" onclick="nextQuestion();">Next</a>
 	    	<a id="closeBtn" class="btn btn-lg btn-danger col-xs-5" style="float:right;" href="index.html">Close</a>
 		</div>
     </footer>
@@ -121,6 +121,11 @@
 			float:right;
 			color:red;
 			margin-top: 0px;
+		}
+
+		#prevBtn, #nextBtn {
+			color: #fff;
+			background-color: #15bece;
 		}
 	</style>
 </body>
