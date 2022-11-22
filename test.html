@@ -173,24 +173,19 @@
 		var submitted = false;
 
 		function prevQuestion() {
-			console.log("prevQuestion");
 			if(currQuestion == 0) return;
 			currQuestion--;
 			loadQuestion(currQuestion);
-			submitted = false;
 		}
 
 		function nextQuestion() {
-			console.log("nextQuestion");
 			if(currQuestion == questions.length-1) return;
 			currQuestion++;
 			loadQuestion(currQuestion);
-			submitted = false;
 		}
 
 		function loadQuestion(i) {
-			console.log("loadQuestion");
-			console.log(questions[i]);
+			submitted = false;
 			currQuestion = i;
 
 			$("#prevBtn").attr('disabled', false);
@@ -203,7 +198,6 @@
 			}
 
 			if(currQuestion == questions.length-1) {
-				//$("#nextBtn").attr('disabled', true);
 				$("#nextBtn").hide();
 				$("#closeBtn").show();
 			} else {
@@ -227,15 +221,11 @@
 			    	<button id="submitBtn" class="btn btn-lg" disabled>Check Answer</button>
 				</div>
 			`;*/
-			console.log(content);
 			document.getElementById("questionDiv").innerHTML = content;
 		}
 
 		function getOptionContent(question, opt) {
-			console.log(question);
-			console.log(opt);
 			var content = "";
-
 			if(opt == question["Answer"]) {
 				content = `
 					<span class="option thumbnail" onClick="optionClick()">
@@ -256,39 +246,25 @@
 			return content;
 		}
 
-		function optionClick() {
-			return;
-			if(submitted) return;
-
-			$('.option').removeClass('selected');
-			$(this).addClass('selected');
-			$("#submitBtn").addClass('btn-primary');
-			$("#submitBtn").attr('disabled', false);
-		}
 	</script>
 
 	<script type="text/javascript">
 		
 		$(document.body).on('click', '.option' ,function(){
 			if(submitted) return;
+			submitted = true;
 
 			$('.option').removeClass('selected');
-			//$(this).addClass('selected');
 			if($(this).children('span.correctOptFlag').length > 0) {
 		        $(this).addClass('selected');
 		     } else {
 		     	$(this).addClass('selected-warning');
 		     	$(this).children('.wrongOptFlag').show();
 		     }
-			//$("#submitBtn").addClass('btn-primary');
-			//$("#submitBtn").attr('disabled', false);
-
+			
 			//submit functionality
-			submitted = true;
-			//$('#answerDiv').show();
 			$('.correctOptFlag').show();
 			$('.correctOptFlag').parent().addClass('correctOpt');
-			$("#submitBtn").attr('disabled', true);
 		});
 
 		$(document.body).on('click', '#submitBtn' ,function(){
@@ -302,13 +278,12 @@
 	
 	<script id='script'>
       
-    /*fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSz6KbBHUZJvBg1UJmkSvT7xJfPCc0PHU8bkc0SP9LqIi4t6iexhwTEO0Q0MhfHEAHyhYSL3UqO1LA0/pub?output=csv', {
-    	method: 'get',
-	      mode: 'no-cors'
+    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSz6KbBHUZJvBg1UJmkSvT7xJfPCc0PHU8bkc0SP9LqIi4t6iexhwTEO0Q0MhfHEAHyhYSL3UqO1LA0/pub?output=csv', {
+    	method: 'get'
     })
 	  .then(response => response.text())
 	  .then(data => console.log(data));
-	  */
+	  
 
     </script>
     <script type="text/javascript">
@@ -325,7 +300,6 @@ Which state hosted the 2nd edition of North East Olympic Games in 2022?,Assam,Me
 	function csvJSON(csv){
 
 	  var lines=csv.split("\n");
-
 	  var result = [];
 
 	  // NOTE: If your columns contain commas in their values, you'll need
@@ -334,17 +308,15 @@ Which state hosted the 2nd edition of North East Olympic Games in 2022?,Assam,Me
 	  // jsfiddle showing the issue https://jsfiddle.net/
 	  var headers=lines[0].split(",");
 	  console.log(headers)
-	  for(var i=1;i<lines.length;i++){
 
+	  for(var i=1;i<lines.length;i++){
 	      var obj = {};
 	      var currentline=lines[i].split(",");
 
 	      for(var j=0;j<headers.length;j++){
 	          obj[headers[j]] = currentline[j];
 	      }
-
 	      result.push(obj);
-
 	  }
 
 	  return result; //JavaScript object
@@ -352,11 +324,6 @@ Which state hosted the 2nd edition of North East Olympic Games in 2022?,Assam,Me
 	}	
 
 	var questions = csvJSON(allText);
-	console.log(questions.length);
-	console.log(questions);
-	for(var i=0;i<questions.length;i++){
-		console.log(questions[i]);
-	}
 	loadQuestion(0);
 
     </script>
