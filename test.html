@@ -282,8 +282,8 @@
     	method: 'get'
     })
 	  .then(response => response.text())
-	  .then(data => csvJSON(data));
-	  .then(questions2 => questions = questions2;);
+	  .then(questions => csvJSON(data));
+	  //.then(questions2 => questions = questions2;);
 	  .then(loadQuestion(0))
 	  
 
