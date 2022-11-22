@@ -278,13 +278,13 @@
 	
 	<script id='script'>
     	var sheet_data = "";  
-    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSz6KbBHUZJvBg1UJmkSvT7xJfPCc0PHU8bkc0SP9LqIi4t6iexhwTEO0Q0MhfHEAHyhYSL3UqO1LA0/pub?output=csv', {
+    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSz6KbBHUZJvBg1UJmkSvT7xJfPCc0PHU8bkc0SP9LqIi4t6iexhwTEO0Q0MhfHEAHyhYSL3UqO1LA0/pub?output=tsv', {
     	method: 'get'
     })
 	  .then(response => response.text())
 	  .then(function(data) {
 	  	console.log(data);
-	  	csvJSON(data);
+	  	return csvJSON(data);
 	  })
 	  .then( function(jsonData){
 	  	questions = jsonData;
@@ -319,7 +319,7 @@ Which state hosted the 2nd edition of North East Olympic Games in 2022?,Assam,Me
 
 	  for(var i=1;i<lines.length;i++){
 	      var obj = {};
-	      var currentline=lines[i].split(",");
+	      var currentline=lines[i].split("	");
 
 	      for(var j=0;j<headers.length;j++){
 	          obj[headers[j]] = currentline[j];
@@ -331,8 +331,8 @@ Which state hosted the 2nd edition of North East Olympic Games in 2022?,Assam,Me
 	  //return JSON.stringify(result); //JSON
 	}	
 
-	var questions = csvJSON(allText);
-	loadQuestion(0);
+	//var questions = csvJSON(allText);
+	//loadQuestion(0);
 
     </script>
 </html>
